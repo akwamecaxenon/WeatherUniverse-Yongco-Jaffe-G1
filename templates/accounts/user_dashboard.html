@@ -7,7 +7,7 @@
   <article class="card tile">
     <h2>My locations</h2>
     <p class="muted">Save the places you care about and set a default.</p>
-    <span class="badge">Coming in a later phase</span>
+    <a class="btn btn-small" href="{% url 'weather:my_locations' %}">Manage Locations</a>
   </article>
   <article class="card tile">
     <h2>Current weather and forecast</h2>
@@ -17,12 +17,12 @@
   <article class="card tile">
     <h2>Weather alerts</h2>
     <p class="muted">Choose which alerts to receive for each saved location.</p>
-    <span class="badge">Coming in a later phase</span>
+    <a class="btn btn-small" href="{% url 'weather:my_alerts' %}">View & Configure Alerts</a>
   </article>
   <article class="card tile">
     <h2>Weather history</h2>
     <p class="muted">Search past readings by place and date.</p>
     <span class="badge">Coming in a later phase</span>
   </article>
-</div>
+</div>  
 {% endblock %}

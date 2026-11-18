@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Admin Dashboard &middot; Weather Universe{% endblock %}
+{% block title %}Admin Dashboard · Weather Universe{% endblock %}
 {% block content %}
 <h1>Administrator dashboard</h1>
 <p class="muted">Signed in as {{ user.full_name }}.</p>
@@ -30,8 +30,25 @@
 </section>
 
 <div class="grid">
-  <article class="card tile"><h2>Locations and conditions</h2><p class="muted">Manage supported locations and weather condition types.</p><span class="badge">Coming in a later phase</span></article>
-  <article class="card tile"><h2>Alert rules</h2><p class="muted">Set the thresholds that trigger alerts.</p><span class="badge">Coming in a later phase</span></article>
-  <article class="card tile"><h2>Reports</h2><p class="muted">Alerts per location per month.</p><span class="badge">Coming in a later phase</span></article>
+  <article class="card tile">
+    <h2>Locations and conditions</h2>
+    <p class="muted">Manage supported locations and weather condition types.</p>
+    <a class="btn btn-small" href="{% url 'weather:manage_locations' %}">Manage Locations</a>
+  </article>
+  <article class="card tile">
+    <h2>Weather observations</h2>
+    <p class="muted">Record weather readings and flag severe weather events.</p>
+    <a class="btn btn-small" href="{% url 'weather:manage_readings' %}">Record Weather Readings</a>
+  </article>
+  <article class="card tile">
+    <h2>Disaster Universe sharing</h2>
+    <p class="muted">Transfer severe weather data to Disaster Universe for risk warnings.</p>
+    <span class="badge">Coming in a later phase</span>
+  </article>
+  <article class="card tile">
+    <h2>Reports</h2>
+    <p class="muted">Alerts per location per month.</p>
+    <span class="badge">Coming in a later phase</span>
+  </article>
 </div>
 {% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Record Weather · Weather Universe{% endblock %}
+{% block content %}
+<h1>Record Weather Reading</h1>
+<p class="muted">Publish weather observations. Severe events are automatically flagged for Disaster Universe.</p>
+
+<section class="card narrow">
+  <h2>New Weather Observation</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}{% include 'accounts/_field.html' %}{% endfor %}
+    <button type="submit" class="btn">Publish Reading</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Recent Readings</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Temp</th>
+          <th>Humidity</th>
+          <th>Rain %</th>
+          <th>Wind</th>
+          <th>Condition</th>
+          <th>Disaster Sync</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in readings %}
+          <tr>
+            <td>{{ r.location.name }}</td>
+            <td>{{ r.temperature_c }}°C</td>
+            <td>{{ r.humidity_pct }}%</td>
+            <td>{{ r.rain_probability_pct }}%</td>
+            <td>{{ r.wind_speed_kmh }} km/h</td>
+            <td>{{ r.get_condition_display }}</td>
+            <td>
+              {% if r.is_severe %}
+                <span class="badge badge-admin">SEVERE · Ready for Disaster Universe</span>
+              {% else %}
+                <span class="badge">Normal</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="7" class="muted">No readings recorded yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
