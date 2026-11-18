@@ -13,9 +13,13 @@
       {% if user.is_authenticated %}
         {% if user.role == 'ADMIN' %}
           <a href="{% url 'accounts:admin_dashboard' %}" class="{% if request.resolver_match.url_name == 'admin_dashboard' %}active{% endif %}">Admin Dashboard</a>
+          <a href="{% url 'weather:manage_locations' %}" class="{% if request.resolver_match.url_name == 'manage_locations' %}active{% endif %}">Locations</a>
+          <a href="{% url 'weather:manage_readings' %}" class="{% if request.resolver_match.url_name == 'manage_readings' %}active{% endif %}">Record Weather</a>
           {% if user.is_staff %}<a href="{% url 'admin:index' %}">Manage Accounts</a>{% endif %}
         {% else %}
           <a href="{% url 'accounts:user_dashboard' %}" class="{% if request.resolver_match.url_name == 'user_dashboard' %}active{% endif %}">My Dashboard</a>
+          <a href="{% url 'weather:my_locations' %}" class="{% if 'location' in request.resolver_match.url_name %}active{% endif %}">My Locations</a>
+          <a href="{% url 'weather:my_alerts' %}" class="{% if 'alert' in request.resolver_match.url_name %}active{% endif %}">Weather Alerts</a>
         {% endif %}
         <a href="{% url 'accounts:profile' %}" class="{% if 'profile' in request.resolver_match.url_name %}active{% endif %}">Profile</a>
         <form method="post" action="{% url 'accounts:logout' %}" class="inline-form">
@@ -39,6 +43,6 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="footer">Weather Universe &middot; IM2 project &middot; Alerts do not replace official government warnings.</footer>
+  <footer class="footer">Weather Universe · IM2 project · Alerts do not replace official government warnings.</footer>
 </body>
 </html>

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Weather Alerts · Weather Universe{% endblock %}
+{% block content %}
+<h1>Weather Alerts & Threshold Rules</h1>
+<p class="muted">Receive warnings when recorded conditions exceed your thresholds.</p>
+
+{% if triggered %}
+  <section class="card" style="border-left: 4px solid #dc2626;">
+    <h2>Active Triggered Alerts ({{ triggered|length }})</h2>
+    {% for t in triggered %}
+      <div class="alert alert-danger">
+        <strong>{{ t.rule.user_location.location.name }}:</strong>
+        {{ t.rule.get_metric_display }} {{ t.rule.threshold_value }} triggered!
+        Current reading is <strong>{{ t.actual_value }}</strong> ({{ t.reading.get_condition_display }}).
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+
+<section class="card">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+    <h2>My Alert Rules</h2>
+    <a class="btn btn-small" href="{% url 'weather:add_alert_rule' %}">+ New Rule</a>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Condition</th>
+          <th>Threshold</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rule in rules %}
+          <tr>
+            <td>{{ rule.user_location.location.name }}</td>
+            <td>{{ rule.get_metric_display }}</td>
+            <td>{{ rule.threshold_value }}</td>
+            <td><span class="badge">{% if rule.is_active %}Active{% else %}Paused{% endif %}</span></td>
+            <td>
+              <a class="btn btn-small" href="{% url 'weather:edit_alert_rule' rule.pk %}">Edit</a>
+              <form method="post" action="{% url 'weather:delete_alert_rule' rule.pk %}" class="inline-form" onsubmit="return confirm('Delete this alert rule?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-small btn-ghost">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="muted">No alert rules configured yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

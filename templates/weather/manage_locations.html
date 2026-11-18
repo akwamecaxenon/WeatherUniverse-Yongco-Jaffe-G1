@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Supported Locations · Weather Universe{% endblock %}
+{% block content %}
+<h1>Manage Supported Locations</h1>
+<p class="muted">Add or review locations available for subscribers to monitor.</p>
+
+<section class="card narrow">
+  <h2>Add New Location</h2>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form %}{% include 'accounts/_field.html' %}{% endfor %}
+    <button type="submit" class="btn">Add Supported Location</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Registered Locations</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Name</th><th>Region</th><th>Coordinates</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for loc in locations %}
+          <tr>
+            <td>{{ loc.name }}</td>
+            <td>{{ loc.region }}</td>
+            <td>{{ loc.latitude|default:"-" }}, {{ loc.longitude|default:"-" }}</td>
+            <td><span class="badge">{% if loc.is_active %}Active{% else %}Inactive{% endif %}</span></td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="muted">No locations registered yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
