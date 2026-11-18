@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}My Profile &middot; Weather Universe{% endblock %}
+{% block content %}
+<section class="card narrow">
+  <div class="profile-head">
+    {% if profile_user.profile_photo %}
+      <img class="avatar" src="{{ profile_user.profile_photo.url }}" alt="Profile photo of {{ profile_user.full_name }}">
+    {% else %}
+      <div class="avatar placeholder" aria-hidden="true">{{ profile_user.full_name|slice:":1"|upper }}</div>
+    {% endif %}
+    <div>
+      <h1>{{ profile_user.full_name }}</h1>
+      <span class="badge {% if profile_user.role == 'ADMIN' %}badge-admin{% endif %}">{{ profile_user.get_role_display }}</span>
+    </div>
+  </div>
+  <dl class="details">
+    <dt>Email</dt><dd>{{ profile_user.email }}</dd>
+    <dt>Contact number</dt><dd>{{ profile_user.contact_number|default:"Not provided" }}</dd>
+    <dt>Member since</dt><dd>{{ profile_user.created_at|date:"F d, Y" }}</dd>
+  </dl>
+  <a class="btn" href="{% url 'accounts:profile_edit' %}">Edit profile</a>
+</section>
+{% endblock %}

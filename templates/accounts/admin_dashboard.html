@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard &middot; Weather Universe{% endblock %}
+{% block content %}
+<h1>Administrator dashboard</h1>
+<p class="muted">Signed in as {{ user.full_name }}.</p>
+<div class="grid stats">
+  <article class="card stat"><span class="num">{{ total_users }}</span><span>Total accounts</span></article>
+  <article class="card stat"><span class="num">{{ total_members }}</span><span>Registered users</span></article>
+  <article class="card stat"><span class="num">{{ total_admins }}</span><span>Administrators</span></article>
+</div>
+
+<section class="card">
+  <h2>Newest accounts</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead>
+      <tbody>
+      {% for u in recent_users %}
+        <tr>
+          <td>{{ u.full_name }}</td><td>{{ u.email }}</td>
+          <td><span class="badge {% if u.role == 'ADMIN' %}badge-admin{% endif %}">{{ u.get_role_display }}</span></td>
+          <td>{{ u.created_at|date:"M d, Y" }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4" class="muted">No accounts yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="grid">
+  <article class="card tile"><h2>Locations and conditions</h2><p class="muted">Manage supported locations and weather condition types.</p><span class="badge">Coming in a later phase</span></article>
+  <article class="card tile"><h2>Alert rules</h2><p class="muted">Set the thresholds that trigger alerts.</p><span class="badge">Coming in a later phase</span></article>
+  <article class="card tile"><h2>Reports</h2><p class="muted">Alerts per location per month.</p><span class="badge">Coming in a later phase</span></article>
+</div>
+{% endblock %}

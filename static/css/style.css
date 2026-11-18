@@ -1,0 +1,48 @@
+:root{--ink:#1b2a33;--deep:#0f3d4c;--teal:#0e7c86;--teal-dark:#0a5f67;--sun:#f2a93b;--mist:#eaf2f4;--line:#d4e0e4;--red:#c8414f;--green:#2e9e6b;--muted:#5b7c8d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Calibri,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--mist);line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--teal)}
+h1{font-family:Cambria,Georgia,serif;color:var(--deep);margin:.2em 0 .3em;font-size:2rem}
+h2{font-family:Cambria,Georgia,serif;color:var(--deep);margin:0 0 .3em;font-size:1.2rem}
+.muted{color:var(--muted)} .center{text-align:center}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.8rem 1.5rem;background:var(--deep);color:#fff}
+.brand{display:flex;align-items:center;gap:.6rem;color:#fff;text-decoration:none;font-family:Cambria,Georgia,serif;font-size:1.3rem;font-weight:bold}
+.sun{width:1.1rem;height:1.1rem;border-radius:50%;background:var(--sun);display:inline-block}
+.nav{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap}
+.nav a,.link-button{color:#dcecef;text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;padding:0}
+.nav a:hover,.link-button:hover,.nav a.active{color:#fff;text-decoration:underline}
+.inline-form{margin:0}
+.container{width:100%;max-width:980px;margin:0 auto;padding:1.5rem;flex:1}
+.footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1rem}
+.card{background:#fff;border-radius:12px;padding:1.4rem;margin-bottom:1.2rem;box-shadow:0 1px 3px rgba(15,61,76,.12)}
+.narrow{max-width:520px;margin-left:auto;margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.2rem}
+.grid .card{margin-bottom:0}
+.stat{text-align:center}.stat .num{display:block;font-family:Cambria,Georgia,serif;font-size:2.4rem;font-weight:bold;color:var(--teal)}
+.badge{display:inline-block;padding:.15rem .6rem;border-radius:999px;background:var(--mist);color:var(--deep);font-size:.8rem;font-weight:bold}
+.badge-admin{background:var(--sun);color:var(--ink)}
+.field{margin-bottom:1rem}
+label{display:block;font-weight:bold;margin-bottom:.25rem}
+input[type=text],input[type=email],input[type=password],input[type=file]{width:100%;padding:.6rem .7rem;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+input:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.has-error input{border-color:var(--red)}
+.help{color:var(--muted);font-size:.85rem;margin-top:.25rem}.help ul{margin:.2rem 0;padding-left:1.2rem}
+.error{color:var(--red);font-size:.9rem;margin-top:.25rem}
+.btn{display:inline-block;padding:.6rem 1.2rem;border-radius:8px;background:var(--teal);color:#fff;text-decoration:none;border:0;font:inherit;font-weight:bold;cursor:pointer}
+.btn:hover{background:var(--teal-dark)}.btn-block{width:100%;margin:.4rem 0 1rem}
+.btn-small{padding:.3rem .9rem;background:var(--sun);color:var(--ink)}.btn-small:hover{background:#e29a2a;color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--teal);border:1px solid var(--teal)}.btn-ghost:hover{background:var(--mist)}
+.actions{display:flex;gap:.7rem;flex-wrap:wrap}
+.messages{margin-bottom:1rem}
+.alert{padding:.7rem 1rem;border-radius:8px;margin-bottom:.5rem;border:1px solid}
+.alert ul{margin:0;padding-left:1.1rem;list-style:none;padding:0}
+.alert-success{background:#e6f5ee;border-color:var(--green);color:#1d6b49}
+.alert-danger{background:#fbe9eb;border-color:var(--red);color:#8f2a35}
+.alert-info,.alert-warning{background:#fff4de;border-color:var(--sun);color:#7a5412}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:.85rem}
+.profile-head{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.avatar{width:84px;height:84px;border-radius:50%;object-fit:cover}
+.avatar.placeholder{display:flex;align-items:center;justify-content:center;background:var(--teal);color:#fff;font-size:2.2rem;font-weight:bold}
+.details{display:grid;grid-template-columns:150px 1fr;gap:.5rem 1rem;margin:0 0 1.2rem}.details dt{font-weight:bold;color:var(--muted)}.details dd{margin:0}
+.tile .badge{margin-top:.4rem}

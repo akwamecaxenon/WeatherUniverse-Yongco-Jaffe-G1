@@ -1,0 +1,22 @@
+# secrets and local config
+.env
+*.env
+!.env.example
+
+# Python
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
