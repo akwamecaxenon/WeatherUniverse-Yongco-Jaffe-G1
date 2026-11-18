@@ -1,6 +1,6 @@
 # Weather Universe
 
-A database-driven weather monitoring and alert system built with **Django** (templates for the front end) and **PostgreSQL** / **Supabase**. IM2 project, CSIT327-G1.
+A database-driven weather monitoring and alert system built with **Django** (templates for the front end) and **SQLite** / soon to use **PostgreSQL/Supabase**. IM2 project, CSIT327-G1.
 
 **Phase 1 (this commit range): Account feature**
 - Registration with validation (required fields, email format, unique email, matching password confirmation) and hashed passwords
